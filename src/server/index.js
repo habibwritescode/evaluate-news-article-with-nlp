@@ -5,17 +5,10 @@ var path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const mockAPIResponse = require('./mockAPI.js');
 
-var aylien = require("aylien_textapi");
-// set aylien API credentials
-// NOTICE that textapi is the name I used, but it is arbitrary.
-// You could call it aylienapi, nlp, or anything else, 
-//   just make sure to make that change universally!
-var textapi = new aylien({
-    application_id: process.env.API_ID,
-    application_key: process.env.API_KEY
-});
+const mockAPIResponse = require('./mockAPI.js');
+const makeRequest = require('./makeRequest');
+
 
 const app = express();
 
@@ -37,8 +30,8 @@ app.get('/', function(req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function() {
-    console.log('Example app listening on port 8081!')
+app.listen(8080, function() {
+    console.log('Example app listening on port 8080!')
 })
 
 app.get('/test', function(req, res) {
@@ -46,14 +39,4 @@ app.get('/test', function(req, res) {
 })
 
 
-app.post('/article', getArticle);
-
-function getArticle(req, res) {
-    textapi.sentiment({
-            url: req.body.url
-        },
-        function(error, response) {
-            res.send(response);
-        }
-    );
-}
+app.post('/article', makeRequest.getArticle);

@@ -18,7 +18,7 @@ function handleSubmit(event) {
 // Async POST
 const postData = async(url = '') => {
 
-    const response = await fetch('/article', {
+    const response = await fetch('http://localhost:8080/article', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -36,8 +36,6 @@ const postData = async(url = '') => {
     }
 }
 
-
-// /* Function to GET Project Data */
 
 function updateUI(data) {
     console.log(data)
