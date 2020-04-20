@@ -9,12 +9,11 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formUrl = document.getElementById('url').value;
-    // Client.checkForName(formUrl)
 
     console.log("::: Form Submitted :::")
-    if (Client.validateUrl(formUrl)) {
 
-        // Hide error messages
+    if (Client.validateUrl(formUrl)) {
+        // Hide error message
         error.style.visibility = 'hidden';
 
         // Clear previous form results
@@ -23,10 +22,10 @@ function handleSubmit(event) {
         subjectivity.innerHTML = "";
         subConfidence.innerHTML = "";
 
-        // Call postdata passing in the input url
+        // Call postData passing in the entered url
         postData(formUrl)
             .then(function(data) {
-                // Call uiUpdate once data has been sent back from server
+                // Update Webpage with results
                 updateUI(data);
             })
     }
@@ -62,4 +61,4 @@ function updateUI(data) {
     subConfidence.innerHTML = `Subjectivity Confidence: ${data.subjectivity_confidence}`;
 }
 
-export { handleSubmit, postData, updateUI }
+export { handleSubmit }
