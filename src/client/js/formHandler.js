@@ -1,3 +1,9 @@
+const error = document.getElementById('error');
+const polarity = document.getElementById('polarity');
+const polConfidence = document.getElementById('pol-confidence');
+const subjectivity = document.getElementById('subjectivity');
+const subConfidence = document.getElementById('sub-confidence');
+
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -6,19 +12,29 @@ function handleSubmit(event) {
     // Client.checkForName(formUrl)
 
     console.log("::: Form Submitted :::")
+    if (Client.validateUrl(formUrl)) {
 
-    // Call postdata passing in the input url
-    postData(formUrl)
-        .then(function(data) {
-            // Call uiUpdate once data has been sent back from server
-            updateUI(data);
-        })
+        // Hide error messages
+        error.style.visibility = 'hidden';
+
+        // Clear previous form results
+        polarity.innerHTML = "";
+        polConfidence.innerHTML = "";
+        subjectivity.innerHTML = "";
+        subConfidence.innerHTML = "";
+
+        // Call postdata passing in the input url
+        postData(formUrl)
+            .then(function(data) {
+                // Call uiUpdate once data has been sent back from server
+                updateUI(data);
+            })
+    }
 }
-
 // Async POST
 const postData = async(url = '') => {
 
-    const response = await fetch('http://localhost:3000/article', {
+    const response = await fetch('http://localhost:3030/article', {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
@@ -40,10 +56,10 @@ const postData = async(url = '') => {
 
 function updateUI(data) {
     console.log(data)
-    document.getElementById('polarity').innerHTML = `Polarity: ${data.polarity}`;
-    document.getElementById('pol-confidence').innerHTML = `Polarity Confidence: ${data.polarity_confidence}`;
-    document.getElementById('subjectivity').innerHTML = `Subjectivity: ${data.subjectivity}`;
-    document.getElementById('sub-confidence').innerHTML = `Subjectivity Confidence: ${data.subjectivity_confidence}`;
+    polarity.innerHTML = `Polarity: ${data.polarity}`;
+    polConfidence.innerHTML = `Polarity Confidence: ${data.polarity_confidence}`;
+    subjectivity.innerHTML = `Subjectivity: ${data.subjectivity}`;
+    subConfidence.innerHTML = `Subjectivity Confidence: ${data.subjectivity_confidence}`;
 }
 
 export { handleSubmit, postData, updateUI }

@@ -20,7 +20,8 @@
     <main>
         <section>
             <form class="" onsubmit="return Client.handleSubmit(event)">
-                <input id="url" type="text" name="input" value="" placeholder="Name">
+                <input id="url" type="text" name="input" value="" placeholder="Valid Url" required>
+                <div id="error">Please enter a valid URL to an article</div>
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
             </form>
             <section>

@@ -16,16 +16,4 @@ function getArticle(req, res) {
     );
 }
 
-function getText(req, res) {
-    textapi.sentiment({
-            text: req.body.url
-        },
-        function(error, response) {
-            res.send(response);
-        }
-    );
-}
-
-
 exports.getArticle = getArticle;
-exports.getText = getText;
