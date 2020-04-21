@@ -17,4 +17,3 @@ This project also used:
 - Sass styles
 - Webpack Loaders and Plugins
 - Service workers
-- An API
