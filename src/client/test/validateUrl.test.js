@@ -1,4 +1,4 @@
-import { validateUrl } from "../js/urlValidator";
+import { validateUrl } from "../js/validateUrl";
 
 describe("Test: 'validateUrl()'", () => {
     test('Should be defined', () => {

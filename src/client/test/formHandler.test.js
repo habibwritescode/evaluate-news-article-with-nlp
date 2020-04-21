@@ -1,4 +1,4 @@
-import { handleSubmit } from "../formHandler";
+import { handleSubmit } from "../js/formHandler";
 
 
 describe("Test: 'handleSubmit()'", () => {
